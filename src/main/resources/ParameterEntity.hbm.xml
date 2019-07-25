@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="Parameter.ParameterEntity" table="Parameter" schema="public" catalog="test">
+        <id name="paramId">
+            <generator class="increment"/>
+        </id>
+        <property name="paramName">
+            <column name="param_name" sql-type="varchar"/>
+        </property>
+        <property name="paramDetails">
+            <column name="param_details" sql-type="varchar"/>
+        </property>
+        <property name="paramMax">
+            <column name="param_max" sql-type="double precision" precision="-1" not-null="true"/>
+        </property>
+        <property name="paramMin">
+            <column name="param_min" sql-type="double precision" precision="-1" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>
