@@ -26,8 +26,18 @@ public class AppMain {
 
         ParameterEntityDAO paramdao = new ParameterEntityDAO();
 
+        List<ParameterEntity> allparams = paramdao.getAllParameters();
+
+        paramdao.addParameter("saat onda eklendi","saat on kırkiki",25.65,27.8);
+
+        List<ParameterEntity> allparams2 = paramdao.getAllParameters();
+
+
         List<ParameterEntity> params = paramdao.searchParamViaName("o");
 
+        ParameterEntity p = paramdao.getParameterById(5);
+
+        paramdao.updateParameter(5,"yeniad",null,null,null);
         System.out.println(params);
 
 

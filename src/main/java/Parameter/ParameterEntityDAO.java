@@ -5,7 +5,6 @@ import com.sun.istack.internal.Nullable;
 import javax.persistence.*;
 import java.util.List;
 
-
 public class ParameterEntityDAO {
 
     private static EntityManagerFactory ef = Persistence.createEntityManagerFactory( "hibernateCRUD3" );
@@ -43,17 +42,42 @@ public class ParameterEntityDAO {
 
     public void updateParameter(int paramID, @Nullable String newName, @Nullable String newDefinition,@Nullable Double newMax,@Nullable Double newMin){
         ParameterEntity param = getParameterById(paramID);
-        if(newName != null)
+        if(newName != null) {
             param.setParamName(newName);
-        if(newName != null)
+        }
+        if(newDefinition != null) {
             param.setParamDetails(newDefinition);
-        if(newName != null)
+        }
+        if(newMin != null) {
             param.setParamMin(newMin);
-        if(newName != null)
+        }
+        if(newMax != null) {
             param.setParamMax(newMax);
+        }
         et.begin();
         em.merge(param);
         et.commit();
         et.rollback();
     }
+
+    public void addParameter(String paramName, @Nullable String paramDef, @Nullable Double paramMax, @Nullable Double paramMin)
+    {
+        ParameterEntity newParam = new ParameterEntity();
+
+        newParam.setParamName(paramName);
+        newParam.setParamDetails(paramDef);
+        newParam.setParamMin(paramMin);
+        newParam.setParamMax(paramMax);
+
+        et.begin();
+        try {
+            em.persist(newParam);
+            et.commit();
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
+        et.rollback();
+    }
+
 }
