@@ -60,6 +60,38 @@ public class ParameterEntityDAO {
         et.rollback();
     }
 
+    public ParameterEntity getParamByName(String paramName){
+
+        ParameterEntity p = new ParameterEntity();
+        List<ParameterEntity> params = searchParamViaName(paramName);
+        for (ParameterEntity param:params)
+        {
+            if(param.getParamName() == paramName){
+                p=param;
+            }
+        }
+        return p;
+    }
+
+    public void deleteParameterByName(String paramName){
+        ParameterEntity p = getParamByName(paramName);
+
+        et.begin();
+        em.remove(p);
+        et.commit();
+        et.rollback();
+    }
+
+    public void deleteParameterById(int id){
+        ParameterEntity p = getParameterById(id);
+
+        et.begin();
+        em.remove(p);
+        et.commit();
+        et.rollback();
+    }
+
+
     public void addParameter(String paramName, @Nullable String paramDef, @Nullable Double paramMax, @Nullable Double paramMin)
     {
         ParameterEntity newParam = new ParameterEntity();
