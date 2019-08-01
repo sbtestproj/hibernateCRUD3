@@ -28,7 +28,7 @@ public class AppMain {
 
         List<ParameterEntity> allparams = paramdao.getAllParameters();
 
-        paramdao.addParameter("saat onda eklendi","saat on kırkiki",25.65,27.8);
+        //paramdao.addParameter("saat onda eklendi","saat on kırkiki",25.65,27.8);
 
         List<ParameterEntity> allparams2 = paramdao.getAllParameters();
 
@@ -37,9 +37,15 @@ public class AppMain {
 
         ParameterEntity p = paramdao.getParameterById(5);
 
-        paramdao.updateParameter(5,"yeniad",null,null,null);
-        System.out.println(params);
+        //paramdao.updateParameter(5,"yeniad",null,null,null);
 
+        //paramdao.deleteParameterById(11);
+
+        paramdao.deleteParameterByName("saat onda eklendi");
+        List<ParameterEntity> allparams3 = paramdao.getAllParameters();
+
+        System.out.println(params);
+        System.out.println(allparams3);
 
 
 

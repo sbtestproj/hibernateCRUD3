@@ -57,7 +57,7 @@ public class ParameterEntityDAO {
         et.begin();
         em.merge(param);
         et.commit();
-        et.rollback();
+        //et.rollback();
     }
 
     public ParameterEntity getParamByName(String paramName){
@@ -66,7 +66,8 @@ public class ParameterEntityDAO {
         List<ParameterEntity> params = searchParamViaName(paramName);
         for (ParameterEntity param:params)
         {
-            if(param.getParamName() == paramName){
+            String paramnname = param.getParamName();
+            if(paramnname.matches(paramName)){
                 p=param;
             }
         }
@@ -79,16 +80,20 @@ public class ParameterEntityDAO {
         et.begin();
         em.remove(p);
         et.commit();
-        et.rollback();
+        //et.rollback();
     }
 
     public void deleteParameterById(int id){
         ParameterEntity p = getParameterById(id);
-
-        et.begin();
-        em.remove(p);
-        et.commit();
-        et.rollback();
+        if(p != null) {
+            et.begin();
+            em.remove(p);
+            et.commit();
+        }
+        else{
+            System.out.println("We dont have this object");
+        }
+        //et.rollback();
     }
 
 
@@ -109,7 +114,7 @@ public class ParameterEntityDAO {
         catch (Exception e){
             System.out.println(e);
         }
-        et.rollback();
+        //et.rollback();
     }
 
 }
