@@ -66,8 +66,7 @@ public class ParameterEntityDAO {
         List<ParameterEntity> params = searchParamViaName(paramName);
         for (ParameterEntity param:params)
         {
-            String paramnname = param.getParamName();
-            if(paramnname.matches(paramName)){
+            if(param.getParamName().matches(paramName)){
                 p=param;
             }
         }
